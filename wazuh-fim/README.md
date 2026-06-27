@@ -72,13 +72,12 @@ Confirm the **Shared file hash** has changed and **Status: Active**.
 On the Windows machine (PowerShell as Administrator):
 
 ```powershell
-echo "Sensitive data" > C:\Users\Public\Documents\important.txt
-Start-Sleep -Seconds 5
+echo "Sensitive data" > C:\Users\Public\Documents\important5.txt
 
-echo "Unauthorized modification detected" >> C:\Users\Public\Documents\important.txt
-Start-Sleep -Seconds 5
 
-Remove-Item C:\Users\Public\Documents\important.txt -Force
+echo "Unauthorized modification detected" >> C:\Users\Public\Documents\important5.txt
+
+Remove-Item C:\Users\Public\Documents\important5.txt -Force
 ```
 
 > 💡 **Key lesson learned:** Adding a short delay between actions is important — if events happen too quickly, Wazuh's real-time monitor may only capture the first event in the sequence.
@@ -134,18 +133,6 @@ To move beyond isolated low-severity alerts, a custom rule was created to detect
 | MITRE ATT&CK | T1070 | Indicator Removal |
 
 After applying the rule and restarting the manager, the same attack simulation triggered a single **Critical** alert instead of three separate low-level events — reducing noise and surfacing the real threat.
-
----
-
-## 📸 Screenshots
-
-> *(Add your screenshots in a `screenshots/` folder and reference them below)*
-
-- `screenshots/01-fim-config.png` – FIM configuration in `agent.conf`
-- `screenshots/02-added-event.png` – File Added alert
-- `screenshots/03-modified-event.png` – File Modified alert
-- `screenshots/04-deleted-event.png` – File Deleted alert
-- `screenshots/05-critical-alert.png` – Custom Critical correlation alert
 
 ---
 
